@@ -1,159 +1,46 @@
-# Weekly Insights Multi-Agent Newsletter System
+# Daily Insights Automation (Tech · Healthcare · Finance)
 
-## Overview
+This project is an automated daily newsletter generator built using **Google ADK**. It uses multiple agents to collect news, summarize it, format it into a newsletter, convert it into an image, and post it to LinkedIn — all autonomously.
 
-This project is an **AI-powered Multi-Agent Research & Newsletter Generation System** designed to automatically gather, analyze, and summarize weekly updates across three major domains: **Technology**, **Finance**, and **Healthcare**. The system acts as an autonomous research team—each agent specializing in a specific domain—and produces a polished, ready-to-publish **Weekly Insights Newsletter** without human intervention.
+## ⭐ What It Does
 
-The motivation behind the project is simple:  
-**Staying updated with cross-industry news is time-consuming, fragmented, and often overwhelming.**  
-Professionals, founders, analysts, and students frequently check dozens of websites and reports—yet still struggle to synthesize everything into concise insights. This project solves that problem by using multi-agent collaboration, real-time search, and automated content generation.
+- Collects the latest **Tech**, **Healthcare**, and **Finance** updates  
+- Summarizes each category using domain‑specific agents  
+- Combines them into one polished Markdown newsletter  
+- Saves it as `newsletter.md`  
+- Converts it into a PNG image  
+- Posts the newsletter to LinkedIn automatically
 
----
+## 🧠 Agents Involved
 
-## What I Built
+- **tech_agent** — Technology news summarizer  
+- **healthcare_agent** — Healthcare news summarizer  
+- **finance_agent** — Finance news summarizer  
+- **aggregator_agent** — Merges all summaries  
+- **markdown_agent** — Saves markdown + converts to PNG  
+- **linkedin_agent** — Publishes to LinkedIn  
+- **root_agent** — Runs the pipeline
 
-### 1. Multi-Agent Research Architecture
+## 🛠️ Tech Stack
 
-The system uses the **Google ADK (Agent Development Kit)** and **Gemini 2.5 Flash LLM** to build an intelligent network of specialized agents, including:
-
-- Tech Research Agent  
-- Finance Research Agent  
-- Healthcare Research Agent  
-- Aggregator Agent  
-- Parallel Execution Layer  
-- Sequential Orchestration Layer  
-
-Each agent is assigned a domain, search tools, strict formatting, and clear output expectations. Together, they emulate a real-world research and editorial workflow.
-
----
-
-### 2. Domain-Specialized Research Agents
-
-#### Technology Agent
-Extracts the top tech updates categorized into:
-- AI & Machine Learning  
-- Software & Apps  
-- Hardware & Devices  
-- Cybersecurity  
-- Tech Policy, Funding & Startups  
-
-Each story includes:
-- A short summary  
-- Impact analysis  
-
-#### Finance Agent
-Summarizes:
-- Markets & Indices  
-- Macroeconomic Policy  
-- Banking & Regulations  
-- Mergers & Acquisitions  
-- Crypto & Digital Assets  
-
-#### Healthcare Agent
-Analyzes:
-- Medical Research & Clinical Trials  
-- Public Health & Policy  
-- Pharmaceutical Developments  
-- MedTech & Innovation  
-
-Each output is structured, factual, and domain-focused.
-
----
-
-## 3. Parallel Research Execution
-
-A **ParallelAgent** runs all three domain agents simultaneously, resulting in:
-- Faster execution  
-- Real-time industry insights  
-- Scalability  
-
----
-
-## 4. Aggregator & Newsletter Generator
-
-The **Aggregator Agent** combines outputs into a unified newsletter.  
-It produces:
-
-- Title  
-- Engaging introduction  
-- Technology Highlights  
-- Healthcare Highlights  
-- Finance Highlights  
-- Closing paragraph  
-
-The writing is clean, professional, and immediately ready to publish.
-
----
-
-## 5. End-to-End Processing Pipeline
-
-A **SequentialAgent** handles:
-1. Triggering parallel agents  
-2. Collecting domain outputs  
-3. Passing data to the Aggregator Agent  
-4. Returning the final newsletter  
-
-An **InMemoryRunner** executes the entire sequence on demand.
-
----
-
-## 6. Automated Weekly Research System
-
-This system automates:
-- Research  
-- Summarization  
-- Categorization  
-- Editorial work  
-- Newsletter generation  
-
-The only user input needed is a single instruction, such as:  
-**“Run the daily executive briefing on Tech, Health, and Finance.”**
-
----
-
-## 7. Why This Project is Valuable
-
-- Saves time for professionals  
-- Provides structured, reliable insights  
-- Scalable across more domains  
-- Uses real-time Google Search  
-- Produces publication-ready content  
-
----
-
-## 8. Technical Stack
-
-- Google ADK (Agent Development Kit)  
+- Google ADK  
 - Gemini 2.5 Flash  
-- Python + asyncio  
-- Parallel & Sequential Agents  
-- Google Search API Integration  
+- Google Search Tool  
+- MCP Remote (LinkedIn automation)  
+- markdown2 + html2image  
+- Python asyncio  
 
----
+## ▶️ How to Run
 
-## 9. Key Innovations
+```bash
+python main.py
+```
 
-- Multi-agent collaboration  
-- Automatic structured formatting  
-- Fully automated research pipeline  
-- Fast and scalable processing  
+This triggers the full pipeline:  
+**research → summarize → compile → save → convert → publish**
 
----
+## 📄 Outputs
 
-## 10. Real-World Applications
-
-- Weekly newsletters  
-- Market intelligence  
-- Startup research  
-- Healthcare/tech trend tracking  
-- Executive briefings  
-- Student research assistance  
-
----
-
-## Conclusion
-
-This project showcases the power of multi-agent AI systems, structured workflows, and real-time data. It recreates the workflow of a full research and editorial team, delivering polished weekly insights across Technology, Finance, and Healthcare with a single command.
-
-It is fast, scalable, and impactful—ideal for anyone who needs professional-grade insights generated automatically.
-
+- `newsletter.md` — generated newsletter  
+- `newsletter.png` — rendered image  
+- LinkedIn post — automatically published
