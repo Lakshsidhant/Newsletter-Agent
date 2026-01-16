@@ -1,159 +1,159 @@
-# Weekly Insights Multi-Agent Newsletter System
+# 📰 Agentic Daily Newsletter Generator (LangGraph + Gemini)
 
-## Overview
+An **agentic Python pipeline** that automatically:
+- Fetches daily **Technology, Finance, and Healthcare** news
+- Summarizes them using **Gemini (Google Generative AI)**
+- Compiles a professional **Markdown newsletter**
+- Converts it into **images**
+- Sends it via **email** using SMTP
 
-This project is an **AI-powered Multi-Agent Research & Newsletter Generation System** designed to automatically gather, analyze, and summarize weekly updates across three major domains: **Technology**, **Finance**, and **Healthcare**. The system acts as an autonomous research team—each agent specializing in a specific domain—and produces a polished, ready-to-publish **Weekly Insights Newsletter** without human intervention.
-
-The motivation behind the project is simple:  
-**Staying updated with cross-industry news is time-consuming, fragmented, and often overwhelming.**  
-Professionals, founders, analysts, and students frequently check dozens of websites and reports—yet still struggle to synthesize everything into concise insights. This project solves that problem by using multi-agent collaboration, real-time search, and automated content generation.
-
----
-
-## What I Built
-
-### 1. Multi-Agent Research Architecture
-
-The system uses the **Google ADK (Agent Development Kit)** and **Gemini 2.5 Flash LLM** to build an intelligent network of specialized agents, including:
-
-- Tech Research Agent  
-- Finance Research Agent  
-- Healthcare Research Agent  
-- Aggregator Agent  
-- Parallel Execution Layer  
-- Sequential Orchestration Layer  
-
-Each agent is assigned a domain, search tools, strict formatting, and clear output expectations. Together, they emulate a real-world research and editorial workflow.
+Built using **LangGraph**, **LangChain**, and **Google Search Tooling**.
 
 ---
 
-### 2. Domain-Specialized Research Agents
+## 🔧 Architecture Overview
 
-#### Technology Agent
-Extracts the top tech updates categorized into:
-- AI & Machine Learning  
-- Software & Apps  
-- Hardware & Devices  
-- Cybersecurity  
-- Tech Policy, Funding & Startups  
+This project uses a **stateful agent graph** (LangGraph) with parallel execution and deterministic flow.
 
-Each story includes:
-- A short summary  
-- Impact analysis  
+### Flow
+```
+Start
+ ├─ Tech News Agent
+ ├─ Finance News Agent
+ ├─ Healthcare News Agent
+        ↓
+ Aggregator Agent
+        ↓
+ Markdown Saver
+        ↓
+ Markdown → PDF → Image Converter
+        ↓
+ Email Sender
+        ↓
+ End
+```
 
-#### Finance Agent
-Summarizes:
-- Markets & Indices  
-- Macroeconomic Policy  
-- Banking & Regulations  
-- Mergers & Acquisitions  
-- Crypto & Digital Assets  
-
-#### Healthcare Agent
-Analyzes:
-- Medical Research & Clinical Trials  
-- Public Health & Policy  
-- Pharmaceutical Developments  
-- MedTech & Innovation  
-
-Each output is structured, factual, and domain-focused.
-
----
-
-## 3. Parallel Research Execution
-
-A **ParallelAgent** runs all three domain agents simultaneously, resulting in:
-- Faster execution  
-- Real-time industry insights  
-- Scalability  
+### Core Technologies
+- **LangGraph** – Agent orchestration
+- **LangChain** – LLM & tool abstraction
+- **Gemini 2.5 Flash** – Content generation
+- **Google Search API** – Live news retrieval
+- **wkhtmltopdf + pdf2image** – Markdown → Image
+- **SMTP** – Email delivery
 
 ---
 
-## 4. Aggregator & Newsletter Generator
+## ✨ Features
 
-The **Aggregator Agent** combines outputs into a unified newsletter.  
-It produces:
-
-- Title  
-- Engaging introduction  
-- Technology Highlights  
-- Healthcare Highlights  
-- Finance Highlights  
-- Closing paragraph  
-
-The writing is clean, professional, and immediately ready to publish.
+- Parallel news fetching across domains
+- Tool-augmented LLM calls (Google Search)
+- Deterministic agent pipeline (no spaghetti code)
+- Markdown-first content generation
+- Email-ready inline images
+- Date-stamped outputs for traceability
 
 ---
 
-## 5. End-to-End Processing Pipeline
+## 📦 Requirements
 
-A **SequentialAgent** handles:
-1. Triggering parallel agents  
-2. Collecting domain outputs  
-3. Passing data to the Aggregator Agent  
-4. Returning the final newsletter  
+### Python
+- Python **3.10+**
 
-An **InMemoryRunner** executes the entire sequence on demand.
+### System Dependencies (Mandatory)
 
----
+#### wkhtmltopdf
+Used for HTML → PDF conversion.
 
-## 6. Automated Weekly Research System
+- Windows: https://wkhtmltopdf.org/downloads.html
+- Linux:
+```bash
+sudo apt install wkhtmltopdf
+```
 
-This system automates:
-- Research  
-- Summarization  
-- Categorization  
-- Editorial work  
-- Newsletter generation  
-
-The only user input needed is a single instruction, such as:  
-**“Run the daily executive briefing on Tech, Health, and Finance.”**
-
----
-
-## 7. Why This Project is Valuable
-
-- Saves time for professionals  
-- Provides structured, reliable insights  
-- Scalable across more domains  
-- Uses real-time Google Search  
-- Produces publication-ready content  
+#### Poppler (for pdf2image)
+- Windows: Download Poppler and add `bin/` to PATH
+- Linux:
+```bash
+sudo apt install poppler-utils
+```
 
 ---
 
-## 8. Technical Stack
+## 📚 Python Dependencies
 
-- Google ADK (Agent Development Kit)  
-- Gemini 2.5 Flash  
-- Python + asyncio  
-- Parallel & Sequential Agents  
-- Google Search API Integration  
-
----
-
-## 9. Key Innovations
-
-- Multi-agent collaboration  
-- Automatic structured formatting  
-- Fully automated research pipeline  
-- Fast and scalable processing  
+```bash
+pip install \
+  langgraph \
+  langchain \
+  langchain-google-genai \
+  langchain-community \
+  google-search-results \
+  python-dotenv \
+  markdown2 \
+  pdf2image
+```
 
 ---
 
-## 10. Real-World Applications
+## 🔐 Environment Variables
 
-- Weekly newsletters  
-- Market intelligence  
-- Startup research  
-- Healthcare/tech trend tracking  
-- Executive briefings  
-- Student research assistance  
+Create a `.env` file in the project root.
+
+### Google APIs
+```env
+GOOGLE_API_KEY=your_gemini_api_key
+GOOGLE_CSE_ID=your_custom_search_engine_id
+```
 
 ---
 
-## Conclusion
+### SMTP (Email Sending)
 
-This project showcases the power of multi-agent AI systems, structured workflows, and real-time data. It recreates the workflow of a full research and editorial team, delivering polished weekly insights across Technology, Finance, and Healthcare with a single command.
+```env
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your_email@gmail.com
+SMTP_PASS=your_app_password
+```
 
-It is fast, scalable, and impactful—ideal for anyone who needs professional-grade insights generated automatically.
+⚠️ Gmail users must use an App Password.
 
+---
+
+## ▶️ How to Run
+
+```bash
+python newsletter.py
+```
+
+---
+
+## 📤 Email Behavior
+
+- Images are embedded inline
+- HTML email body auto-generated
+- Subject: Daily Newsletter
+
+---
+
+## 🚨 Known Limitations
+
+- No retry logic
+- No scheduler
+- Hardcoded email recipient
+- Images only (no PDF attachment)
+
+---
+
+## 🛣️ Recommended Extensions
+
+- Cron / EventBridge scheduling
+- S3 storage
+- Observability (LangSmith)
+- AWS deployment
+
+---
+
+## 📜 License
+
+MIT
